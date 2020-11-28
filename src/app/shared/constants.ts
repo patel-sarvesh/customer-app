@@ -1,0 +1,1 @@
+export const CUSTOMER_API = 'https://customerdemoapi.herokuapp.com/api/customer';

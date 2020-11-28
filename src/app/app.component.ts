@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { Customer } from './shared/models/customer.model';
+import { select, Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { selectError } from './reducers/customer.reducer';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,9 @@ import { Customer } from './shared/models/customer.model';
 })
 export class AppComponent {
   title = 'customer-app';
-  
-  constructor(private store: Store<{ state: Customer }>) {}
+  errorMsg$: Observable<any>;
 
+  constructor(private store: Store<{ customer: { error: any }}>) {
+    this.errorMsg$ = this.store.pipe(select(selectError));
+  }
 }
