@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +17,8 @@ import { CustomerService } from './shared/services/customer.service';
 import { HttpClientInterceptor } from './httpClinet.interceptor';
 import { EffectsModule } from '@ngrx/effects';
 import { CustomerEffects } from './effects/customer.effect';
+import { ToastrModule } from 'ngx-toastr';
+import { NotificationService } from './shared/services/toastr.service';
 
 
 @NgModule({
@@ -31,7 +34,13 @@ import { CustomerEffects } from './effects/customer.effect';
     StoreModule.forRoot({ customer: CustomerReducer }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
     HttpClientModule,
-    EffectsModule.forRoot([CustomerEffects])
+    EffectsModule.forRoot([CustomerEffects]),
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      positionClass: 'toast-bottom-right'
+    }),
+    BrowserAnimationsModule
   ],
   providers: [
     CustomerService,
@@ -40,6 +49,7 @@ import { CustomerEffects } from './effects/customer.effect';
       useClass: HttpClientInterceptor,
       multi: true
     },
+    NotificationService,
   ],
   bootstrap: [AppComponent]
 })
