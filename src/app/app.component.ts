@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Customer } from './shared/models/customer.model';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'customer-app';
+  
+  constructor(private store: Store<{ state: Customer }>) {}
+
 }
