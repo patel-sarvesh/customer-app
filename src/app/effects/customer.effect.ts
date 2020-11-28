@@ -14,6 +14,7 @@ import {
     CUSTOMER_LOAD_SUCCESS,
     ADD_CUSTOMER
   } from '../shared/constants';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -23,7 +24,8 @@ export class CustomerEffects {
     constructor(
         private actions$: Actions,
         private customerService: CustomerService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private router: Router,
     ) {}
 
     loadCustomers$ = createEffect(() => this.actions$.pipe(
@@ -64,6 +66,7 @@ export class CustomerEffects {
             this.customerService.addCustomer(action.data);
             const customersList = this.customerService.getAllCustomers();
             this.notificationService.showSuccess(ADD_CUSTOMER, 'Success');
+            this.router.navigate(['/home']);
             return of({ type: CUSTOMERS_LOAD_SUCCESS, list: customersList});
         }),
         catchError((error) => {

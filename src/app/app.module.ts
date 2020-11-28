@@ -37,7 +37,7 @@ import { NotificationService } from './shared/services/toastr.service';
     EffectsModule.forRoot([CustomerEffects]),
     ReactiveFormsModule,
     ToastrModule.forRoot({
-      timeOut: 1000,
+      timeOut: 2000,
       positionClass: 'toast-bottom-right'
     }),
     BrowserAnimationsModule
