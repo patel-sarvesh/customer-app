@@ -13,6 +13,12 @@ describe('workspace-project App', () => {
     expect(page.getTitleText()).toEqual('customer-app app is running!');
   });
 
+  it('should create new customer', () => {
+    page.navigateToAddCustomer();
+    page.setNewCustomerForm();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/home');
+  });
+
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
     const logs = await browser.manage().logs().get(logging.Type.BROWSER);

@@ -1,7 +1,7 @@
 <p *ngIf="errorMsg$ | async  as error"> {{ error }} </p>
 <div class="card-header">
     <a [routerLink]="['/add-customer/']" class="btn btn-primary" role="button" aria-disabled="true">Add Customer</a>
-    <a [routerLink]="['/home/']" class="btn btn-primary" role="button" aria-disabled="true">Home</a>
+    <a [routerLink]="['/home/']" class="btn btn-primary move-right" role="button" aria-disabled="true">Home</a>
 </div>
 <div class="container text-center">
     <router-outlet></router-outlet>
